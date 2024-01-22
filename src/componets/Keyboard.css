@@ -1,0 +1,24 @@
+.keyboard {
+    width: 400px;
+    height: fit-content;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-rows: repeat(5, 80px); */
+    gap: 10px;
+    border: 1px solid red;
+    border-radius: 0 0 20px 20px;
+    
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+}
+
+button {
+    border-radius: 25px;
+    width: 80px;
+    aspect-ratio: 1;
+    border: none;
+    box-shadow: 1px 1px 8px 0px rgb(255, 255, 255) inset, -1px -1px 8px 0px rgb(61, 61, 61) inset;
+}
