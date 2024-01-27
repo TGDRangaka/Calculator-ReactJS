@@ -1,24 +1,86 @@
 .keyboard {
-    width: 400px;
     height: fit-content;
-    padding: 30px;
+    padding: 15px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 80px);
     /* grid-template-rows: repeat(5, 80px); */
-    gap: 10px;
-    border: 1px solid red;
-    border-radius: 0 0 20px 20px;
+    gap: 5px;
+    border-radius: 30px;
     
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
+    /* background: linear-gradient(135deg, #3F434C , #1D2027 ); */
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+}
+
+h1, h3 {
+    color: rgb(34, 34, 34);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 40px;
+    width: 100%;
+    grid-column: span 4;
+    /* border: 1px solid red; */
+    text-align: right;
+    padding-right: 10px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+h3{
+    color: rgb(105, 105, 105);
+    font-size: 30px;
+    margin-top: 100px;
 }
 
 button {
     border-radius: 25px;
-    width: 80px;
-    aspect-ratio: 1;
+    width: 100%;
+    height: 80px;
     border: none;
-    box-shadow: 1px 1px 8px 0px rgb(255, 255, 255) inset, -1px -1px 8px 0px rgb(61, 61, 61) inset;
+    background: linear-gradient(-45deg, #CED2DB , #EFF0F4 );
+    color: rgb(54, 54, 54);
+    font-size: 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button > div {
+    width: 75px;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #CED2DB , #EFF0F4 );
+    border-radius: 20px;
+    /* box-shadow: 3px 3px 5px rgb(24, 25, 26, .2); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#key0 {
+    grid-column: span 2;
+}
+
+#key0 > div {
+    width: 99.9%;
+    height: 75px;
+}
+
+.operator {
+    background: linear-gradient(-45deg, #CC5B10, #EC860B);
+}
+
+.operator > div {
+    color: white;
+    background: linear-gradient(135deg, #CC5B10, #EC860B);
+}
+
+.grey-btn {
+    background: linear-gradient(-45deg, #A0A7B7, #C9CDD8);
+}
+.grey-btn > div{
+    background: linear-gradient(135deg, #A0A7B7, #C9CDD8);
 }
