@@ -42,6 +42,7 @@ button {
     background: linear-gradient(-45deg, #CED2DB , #EFF0F4 );
     color: rgb(54, 54, 54);
     font-size: 20px;
+    cursor: pointer;
     
     display: flex;
     justify-content: center;
