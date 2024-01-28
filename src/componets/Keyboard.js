@@ -20,7 +20,12 @@ const Keyboard = () => {
     }
 
     function operatorEntered(operator){
-        if(resetCal) return;
+        if(resetCal && !answer){
+            return;
+        }else if(resetCal && answer){
+            SetResetCal(false);
+            setOperatorEntered(false);
+        }
         if(operatorEnter){
             let array = answer.split(' ');
             array[array.length - 2] = operator;
@@ -34,45 +39,69 @@ const Keyboard = () => {
 
     function calculation(formula){
         let arFormula = formula.split(' ');
-        console.log('cal-start');
-        console.log(arFormula);
-        if(arFormula.length === 1) {
-            setAnswer(formula);
-            return formula;
-        }
         let operator;
-        for(let i = 1; i < arFormula.length - 1; i+=2){
-            let ans;
-            let num1 = Number.parseFloat(arFormula[i-1]);
-            let num2 = Number.parseFloat(arFormula[i+1]);
-            operator = arFormula[i];
+        let operators = ['%','X','/','+','-'];
+        for(let o = 0; o < operators.length; o++){
+            operator = operators[o];
 
-            if(arFormula[i] === '%'){
-                ans = num1 % num2;
-            }else if(arFormula[i] === 'X'){
-                ans = num1 * num2;
-            }else if(arFormula[i] === '/'){
-                ans = num1 / num2;
-            }else if(arFormula[i] === '+'){
-                ans = num1 + num2;
-            }else if(arFormula[i] === '-'){
-                ans = num1 - num2;
+            for(let i = 1; i < arFormula.length - 1; i+=2){
+                let ans;
+                let num1 = Number.parseFloat(arFormula[i-1]);
+                let num2 = Number.parseFloat(arFormula[i+1]);
+
+                if(operator === '%' && arFormula[i] === '%'){
+                    ans = num1 % num2;
+                    arFormula[i-1] = ans + "";
+                    arFormula.splice(i, 2);
+                    i = -1;
+                }else if(operator === 'X' && arFormula[i] === 'X'){
+                    ans = num1 * num2;
+                    arFormula[i-1] = ans + "";
+                    arFormula.splice(i, 2);
+                    i = -1;
+                }else if(operator === '/' && arFormula[i] === '/'){
+                    ans = num1 / num2;
+                    arFormula[i-1] = ans + "";
+                    arFormula.splice(i, 2);
+                    i = -1;
+                }else if(operator === '+' && arFormula[i] === '+'){
+                    ans = num1 + num2;
+                    arFormula[i-1] = ans + "";
+                    arFormula.splice(i, 2);
+                    i = -1;
+                }else if(operator === '-' && arFormula[i] === '-'){
+                    ans = num1 - num2;
+                    arFormula[i-1] = ans + "";
+                    arFormula.splice(i, 2);
+                    i = -1;
+                }
+
+                
+                if(arFormula.length === 1) {
+                    setAnswer(ans);
+                }
+
             }
-
-            arFormula[i-1] = ans + "";
-            arFormula.splice(i, 2);
-
-        }
-        console.log('cal-end ' + operator);
         console.log(arFormula);
 
-        calculation(arFormula.join(' '));
+        // calculation(arFormula.join(' '));
+        }
     }
 
     function solveFormula(){
-        // setAnswer(calculation(answer));
-        console.log(calculation(answer));
-        
+        if(resetCal === true){
+            if(!answer){
+                return;
+            }else{
+                SetResetCal(false);
+                try {
+                    solveFormula();
+                } catch (error) {
+                    SetResetCal(true);
+                }
+            }
+        }
+        calculation(answer);
         setInput(answer);
         SetResetCal(true);
     }
