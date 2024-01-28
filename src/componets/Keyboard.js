@@ -40,7 +40,7 @@ const Keyboard = () => {
     function calculation(formula){
         let arFormula = formula.split(' ');
         let operator;
-        let operators = ['%','X','/','+','-'];
+        let operators = [['%','%'],['X','/'],['+','-']];
         for(let o = 0; o < operators.length; o++){
             operator = operators[o];
 
@@ -49,27 +49,27 @@ const Keyboard = () => {
                 let num1 = Number.parseFloat(arFormula[i-1]);
                 let num2 = Number.parseFloat(arFormula[i+1]);
 
-                if(operator === '%' && arFormula[i] === '%'){
+                if(operator[0] === '%' && arFormula[i] === '%'){
                     ans = num1 % num2;
                     arFormula[i-1] = ans + "";
                     arFormula.splice(i, 2);
                     i = -1;
-                }else if(operator === 'X' && arFormula[i] === 'X'){
+                }else if(operator[0] === 'X' && arFormula[i] === 'X'){
                     ans = num1 * num2;
                     arFormula[i-1] = ans + "";
                     arFormula.splice(i, 2);
                     i = -1;
-                }else if(operator === '/' && arFormula[i] === '/'){
+                }else if(operator[1] === '/' && arFormula[i] === '/'){
                     ans = num1 / num2;
                     arFormula[i-1] = ans + "";
                     arFormula.splice(i, 2);
                     i = -1;
-                }else if(operator === '+' && arFormula[i] === '+'){
+                }else if(operator[0] === '+' && arFormula[i] === '+'){
                     ans = num1 + num2;
                     arFormula[i-1] = ans + "";
                     arFormula.splice(i, 2);
                     i = -1;
-                }else if(operator === '-' && arFormula[i] === '-'){
+                }else if(operator[1] === '-' && arFormula[i] === '-'){
                     ans = num1 - num2;
                     arFormula[i-1] = ans + "";
                     arFormula.splice(i, 2);
