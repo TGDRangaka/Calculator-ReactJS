@@ -110,7 +110,7 @@ const Keyboard = () => {
         <div className='keyboard glass-pane'>
             
             <h3 id='operation'>{input}</h3>
-            <h1 id='input'>{answer}</h1>
+            <p id='input'>{answer}</p>
 
             <button className='allClearBtn grey-btn' onClick={()=>{ 
                 setAnswer('');
